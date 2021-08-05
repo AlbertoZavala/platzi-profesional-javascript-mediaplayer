@@ -1,0 +1,23 @@
+{
+  "name": "platzi-profesional-javascript-mediaplayer",
+  "version": "1.0.0",
+  "description": "Proyecto del curso Profesion de JavaScript de Platzi",
+  "main": "index.js",
+  "scripts": {
+    "start": "live-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlbertoZavala/platzi-profesional-javascript-mediaplayer.git"
+  },
+  "keywords": [],
+  "author": "Jose Alberto Zavala Flores <jose.alberto.zavala.flores@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlbertoZavala/platzi-profesional-javascript-mediaplayer/issues"
+  },
+  "homepage": "https://github.com/AlbertoZavala/platzi-profesional-javascript-mediaplayer#readme",
+  "devDependencies": {
+    "live-server": "^1.2.1"
+  }
+}
