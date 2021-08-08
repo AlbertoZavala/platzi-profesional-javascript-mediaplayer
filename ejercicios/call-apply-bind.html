@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Call, Apply y Bind</title>
+</head>
+<head>
+    <title>Function.prototype.call, Function.prototype.apply y Function.prototype.bind</title>
+  </head>
+
+  <body>
+    <a href="/ejercicios/">Go back</a>
+    <p><em>Abre la consola</em></p>
+
+    <ul>
+        <li><button class="call-to-action">Aprender</button></li>
+        <li><button class="call-to-action">Aprender Más</button></li>
+        <li><button class="call-to-action">!Nunca parar de Aprender!</button></li>
+    </ul>
+
+<script>
+    // ==========================================
+    // Establece 'this' usando 'call'
+    // ==========================================
+    function saludar(){
+        console.log(`Hola. Soy ${this.name} ${this.lastname}`);
+    }
+
+    const richard = {
+        name: "Richard",
+        lastname: "Kaufman López"
+    }
+
+    saludar.call(richard);
+
+    // ==========================================
+    // Establece 'this' usando 'call' y pasar argumentos a la función
+    // ==========================================
+    function caminar(metros, direccion){
+        console.log(`${this.name} camina ${metros} metros hacia ${direccion}`);
+    }
+
+    caminar.call(richard, 400, "norte");
+
+    // ==========================================
+    // Establece 'this' usando 'apply' y pasar argumentos a la función
+    // ==========================================
+
+    caminar.apply(richard, [800, "noreste"]);
+
+    const valores = [1000, "sureste"]
+    caminar.apply(richard, valores);
+
+    /*
+        NEMOTÉCNIA PARA RECORDAR CUAL ES CADA UNO.
+        Call - Comma, argumentos pasados por Comas.
+        Apply - Array, argumentos pasados por Arreglo.
+    */
+
+    // ==========================================
+    // Establecer 'this' en una nueva función usando 'bind'
+    // ==========================================
+    // bind, a diferencia de las anteriores, creará una nueva función,
+    // con el contexto ya aplicado.
+    const daniel= {
+        name: "Daniel",
+        lastname: "Sanchez"
+    }
+
+    // bind, nos crea nuevas funciones, por eso se le agrega una constante 
+    // para que sea recibida esa nueva función.
+    const danielSaludar = saludar.bind(daniel);
+    danielSaludar()
+    
+    // Si necesitáramos pasar argumentos usando bind.
+    const danielCamina = caminar.bind(daniel);
+    danielCamina(1200, "noreste")
+
+    // Los argumentos, también se pueden pasar directamente
+    // al hacer el bind, es decir:
+    const danielCamina2 = caminar.bind(daniel, 1400, "este");
+    danielCamina2()
+
+    // También se pueden guardar argumentos parciales.
+    // Solo pasar un argumento y el otro, pasarlo en la nueva función.
+    // Obviamente respetando el orden de los argumentos.
+    const danielCamina3 = caminar.bind(daniel, 1600);
+    danielCamina3("Oeste")
+
+    // ==========================================
+    // Cuando es útil usar uno de estos métodos.
+    // ==========================================
+    const buttons = document.getElementsByClassName("call-to-action");
+    // buttons.forEach(button => {
+    //     button.onclick = () => alert('Nunca pares de aprender');
+    // });
+
+    // Muestra emnsaje de NO ES UNA FUNCIÓN, esto porque buttons es un 
+    // NodeList (similar a los arreglos) y tienen un propiedad que se 
+    // llama lenght.
+
+    Array.prototype.forEach.call(buttons, button => {
+        button.onclick = () => alert('Nunca pares de aprender');
+    })
+
+</script>
+
+</body>
+</html>
