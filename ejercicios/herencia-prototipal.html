@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herencia Prototipal</title>
+</head>
+<head>
+    <title>Herencia Prototipal</title>
+  </head>
+
+  <body>
+    <a href="/ejercicios/">Go back</a>
+    <p><em>Abre la consola</em></p>
+
+    <p><h2> <em>SomeObject.prototype </em>es un objeto donde definimos el prototipo de las instancias de <em>SomeObject </em>.</h2></p>
+    <p><h2> Es decir, las instancias de <em>SomeObject </em> van a "heredar" de <em>SomeObject.prototype </em>.</h2></p>
+    <p></p>
+    <p><h2> <em>SomeObject.[[Prototype]] </em> es el prototipo de <em>SomeObject </em>. Es decir, <em>SomeObject</em> "hereda" de <em>SomeObject.prototype</em></h2></p>
+
+<script>    
+    function Hero(name){
+        this.name = name;
+    }
+
+    Hero.prototype.saludar = function(){
+        console.log(`Hola, soy ${this.name}`);
+    }
+
+    const zelda = new Hero('Zelda');
+
+    // ==========================================
+    // Propiedades de la instancia.
+    // ==========================================
+    console.log("Name: ", zelda.name);
+
+    // ==========================================
+    // Propiedades de la "clase"
+    // ==========================================
+    console.log(`Saludar: `, zelda.saludar)
+
+    // ==========================================
+    // Propiedades heredadas ej: toString
+    // ==========================================
+    console.log(`toString: `, zelda.toString)
+
+    // ==========================================
+    // hasOwnProperty (¿De dónde sale toString o esto?)
+    // ==========================================
+    console.log(`zelda.hasOwnProperty("name"): `, zelda.hasOwnProperty("name"))
+    console.log(`zelda.hasOwnProperty("saludar"): `, zelda.hasOwnProperty("saludar"))
+
+    const prototypeOfZelda = Object.getPrototypeOf(zelda);
+    if(prototypeOfZelda === Hero.prototype){
+        // Esto indica que son el mismo objeto.
+        // Entonces, cualquier edición que se realice sobre uno,
+        // deberá ser visible en el otro.
+        console.log(`prototypeOfZelda y Hero.prototype son ===`)
+    }else{
+        console.log(`prototypeOfZelda y Hero.prototype son diferentes`)
+    }
+
+    // ==========================================
+    // Inspeccionemos el prototipo de Zelda
+    // ==========================================
+    // Editando Hero para confirmar que se agrega en prototypeOfZelda.
+    Hero.prototype.fight = function(){
+        console.log('FIGHT!!!')
+    }
+
+    // ==========================================
+    // Inspeccionemos el prototipo de Hero
+    // ==========================================
+    console.log(prototypeOfZelda.fight());
+    console.log(`prototypeOfZelda.hasOwnProperty("toString"): `, prototypeOfZelda.hasOwnProperty("toString"))
+
+    // ==========================================
+    // Inspeccionemos el prototipo de Object
+    // ==========================================
+    const prototypeOfPrototypeOfZelda = Object.getPrototypeOf(prototypeOfZelda);    
+    console.log(`prototypeOfPrototypeOfZelda.hasOwnProperty("toString"): `, prototypeOfPrototypeOfZelda.hasOwnProperty("toString"))
+
+
+</script>
+
+</body>
+</html>
