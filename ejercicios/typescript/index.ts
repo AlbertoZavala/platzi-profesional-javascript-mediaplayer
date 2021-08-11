@@ -44,7 +44,7 @@ function add(a: number, b: number): number {
 }
 const sum = add(4,6)
 
-function createAdder(a: numbert): (number) => number {
+function createAdder(a: number): (number) => number {
     return function(b:number){
         return b + a;
     }
