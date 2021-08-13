@@ -3,7 +3,6 @@ class Field{
     input: HTMLInputElement;
 
     constructor(input: HTMLInputElement){
-        debugger;
         this.input = input;
         this.errors = [];
 
@@ -17,14 +16,12 @@ class Field{
             errorMessage.innerHTML = this.errors[0] || '';
         });
     };
-    
+
     validate(){
-        debugger;
     }
 }
 
 function RequiredFieldDecorator(field: Field): Field{
-    debugger;
     let validate = field.validate;
     field.validate = function() {
         validate();
@@ -38,7 +35,6 @@ function RequiredFieldDecorator(field: Field): Field{
 }
 
 function EmailFieldDecorator(field: Field): Field{
-    debugger;
     let validate = field.validate;
 
     field.validate = function() {
